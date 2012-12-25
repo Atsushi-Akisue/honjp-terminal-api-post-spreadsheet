@@ -5,7 +5,7 @@ jQuery&HTMLで動作する<a href="https://github.com/Atsushi-Akisue/jquery-hand
 
 (※hon.jpアカウントが必要です。 申請は<a href="http://hon.jp/doc/honjpterminal.html" target="_blank">こちら</a>をお読みになった上、<a href="mailto:info@hon.jp">info@hon.jp</a>までメールしてください)
 
-##サンプル　実行環境
+##サンプル　利用ソース
 PHP 4.4.9<br>
 PEAR - HTTP/Request.phpを利用<br>
 jQuery<br>
