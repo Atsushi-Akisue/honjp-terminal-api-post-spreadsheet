@@ -32,7 +32,7 @@ if( ! isset($_POST['data']) || empty($_POST['user']) || empty($_POST['passwd']))
 	die("{\"result\": \"ng\"}");
 
 require_once "HTTP/Request.php";
-require_once "/home/honjp3/pubhtml/akisuecmd/tool/xml.php";
+require_once "./xml.php";
 
 ////¢­¢­¢­¥·¥¹¥Æ¥àÂ¦¤Îµ¬Äê¹àÌÜ¢­¢­¢­///////////////////////////////////////////////////////
 //¥Ç¥ê¥ß¥¿
