@@ -17,8 +17,8 @@ MBJ固有	ジャンルID	mbj_genre_id	1001/0250	1
 ビットウェイ固有	量（点、ページ）	btw_pc_quantity		0
 MediaDo固有	取次名	mdd_agent_name		0
 MediaDo固有	取次名かな	mdd_agent_kana		0
-MediaDo固有	デジタル限定フラグ	mdd_is_only_dgtl		0
-パピレス固有	紙書籍初版日	ppy_date_1st_edit		0
+MediaDo固有	デジタル限定フラグ	mdd_is_only_dgtl	1をつけるとチェック	0
+パピレス固有	紙書籍初版日	ppy_date_1st_edit	2012-01-01	0
 パピレス固有	ジャンル（パピレス）	ppy_genre		0
 パピレス固有	販路選択	ppy_slct_market		0
 サブタイトル	サブタイトル	pbl_subtitle		0
@@ -66,27 +66,27 @@ MediaDo固有	デジタル限定フラグ	mdd_is_only_dgtl		0
 内容	商品内容抜粋	ppy_excerpt		0
 価格	販売価格	mbj_sale_price	600	1
 価格	税込み価格	std_price_w_tax		0
-価格	都度販売可否	std_saleable_ever		0
+価格	都度販売可否	std_saleable_ever	1にするとチェック	0
 価格	月額販売可否	std_saleable_month		0
-発売日	配信開始日	mbj_send_stt	2012/09/01	1
+発売日	配信開始日	mbj_send_stt	2012-09-01	1
 発売日	発売情報解禁日	std_date_lift_inf		0
-発売日	発売日（ドコモ）	ntt_slm_dt_sale_dcm		0
-発売日	発売日（au）	ntt_slm_dt_sale_au		0
-発売日	発売日（SB）	ntt_slm_dt_sale_sb		0
-発売日	配信終了日	mbj_send_end		0
+発売日	発売日（ドコモ）	ntt_slm_dt_sale_dcm	2012-09-01	0
+発売日	発売日（au）	ntt_slm_dt_sale_au	2012-09-01	0
+発売日	発売日（SB）	ntt_slm_dt_sale_sb	2012-09-01	0
+発売日	配信終了日	mbj_send_end	2012-09-01	0
 対象	対象者	mbj_trgt_prsn		0
 対象	倫理区分	mbj_ethics		0
 対象	撮影時年齢確認	std_agecheck_pht		0
-対象	アダルトフラグ	is_adult		0
+対象	アダルトフラグ	is_adult	1にするとチェック	0
 セット販売	販売方法	mbj_sale_way		0
-セット販売	セット販売可否	std_saleable_set		0
+セット販売	セット販売可否	std_saleable_set	1にするとチェック	0
 セット販売	セット親子関係（JDICコード）	std_set_child_jdic		0
 1ファイル目	ファイル名1	mbj_file_name1	E12345-543453.zbf	1
 1ファイル目	コンテンツファイル ファイルタイプ1	mbj_ctnt_file_type1	5	1
 1ファイル目	再生環境ID1	mbj_file_viewer_id1		1
 1ファイル目	機能1	mbj_file_func1		1
 1ファイル目	カラーフラグ1	mbj_file_flg_clr1		1
-1ファイル目	サンプルファイルの有無1	mbj_file_has_smpl1		1
+1ファイル目	サンプルファイルの有無1	mbj_file_has_smpl1	1にするとチェック	1
 1ファイル目	サンプルファイル名1	mbj_smpl_file_name1		1
 1ファイル目	サンプルファイル ファイルタイプ1	mbj_smpl_file_type1	5	1
 2ファイル目	ファイル名2	mbj_file_name2	E12345-14324.book	1
@@ -94,7 +94,7 @@ MediaDo固有	デジタル限定フラグ	mdd_is_only_dgtl		0
 2ファイル目	再生環境ID2	mbj_file_viewer_id2		1
 2ファイル目	機能2	mbj_file_func2		1
 2ファイル目	カラーフラグ2	mbj_file_flg_clr2		1
-2ファイル目	サンプルファイルの有無2	mbj_file_has_smpl2		1
+2ファイル目	サンプルファイルの有無2	mbj_file_has_smpl2	1にするとチェック	1
 2ファイル目	サンプルファイル名2	mbj_smpl_file_name2	E12345-14324_sample.book	1
 2ファイル目	サンプルファイル ファイルタイプ2	mbj_smpl_file_type2	2	1
 3ファイル目	ファイル名3	mbj_file_name3		1
@@ -102,7 +102,7 @@ MediaDo固有	デジタル限定フラグ	mdd_is_only_dgtl		0
 3ファイル目	再生環境ID3	mbj_file_viewer_id3		1
 3ファイル目	機能3	mbj_file_func3		1
 3ファイル目	カラーフラグ3	mbj_file_flg_clr3		1
-3ファイル目	サンプルファイルの有無3	mbj_file_has_smpl3		1
+3ファイル目	サンプルファイルの有無3	mbj_file_has_smpl3	1にするとチェック	1
 3ファイル目	サンプルファイル名3	mbj_smpl_file_name3		1
 3ファイル目	サンプルファイル ファイルタイプ3	mbj_smpl_file_type3		1
 4ファイル目	ファイル名4	mbj_file_name4		1
@@ -110,12 +110,12 @@ MediaDo固有	デジタル限定フラグ	mdd_is_only_dgtl		0
 4ファイル目	再生環境ID4	mbj_file_viewer_id4		1
 4ファイル目	機能4	mbj_file_func4		1
 4ファイル目	カラーフラグ4	mbj_file_flg_clr4		1
-4ファイル目	サンプルファイルの有無4	mbj_file_has_smpl4		1
+4ファイル目	サンプルファイルの有無4	mbj_file_has_smpl4	1にするとチェック	1
 4ファイル目	サンプルファイル名4	mbj_smpl_file_name4		1
 4ファイル目	サンプルファイル ファイルタイプ4	mbj_smpl_file_type4		1
 添付ファイル	表紙ファイル名	mbj_cover_fname	E12345.jpg	1
 添付ファイル	添付ファイル名	mbj_attach_fname		0
-JASRAC	JASRAC管理作品使用の有無	std_has_jasra		0
+JASRAC	JASRAC管理作品使用の有無	std_has_jasra	1にするとチェック	0
 JASRAC	JASRAC管理コード	std_issue_schdl		0
 定期刊行物	発行スケジュール	std_issue_schdl		0
 定期刊行物	発行間隔	std_issue_intrvl		0
@@ -125,13 +125,13 @@ JASRAC	JASRAC管理コード	std_issue_schdl		0
 集計コード	集計グループ名2	std_addup_grp_name2		0
 言語	コンテンツ言語	std_contents_lng		0
 その他	備考・連絡	pbl_memo	こんにちは	1
-その他	初回納品日	std_date_supply_1st		0
-その他	追加ファイル納品日	std_date_supply_add		0
-その他	印刷可能（Keyring）	btw_pc_printable		0
-その他	閲覧制限（Keyring）	btw_pc_readlimit		0
-その他	絶版指示	is_orer_stop		0
-その他	販売ハードウェア状況	sale_hardware		0
-類書ISBN入力	ISBN	isbn	345-9868-985/365-6566-9861	1
+その他	初回納品日	std_date_supply_1st	2012-01-01	0
+その他	追加ファイル納品日	std_date_supply_add	2012-01-01	0
+その他	印刷可能（Keyring）	btw_pc_printable	1にするとチェック	0
+その他	閲覧制限（Keyring）	btw_pc_readlimit	1にするとチェック	0
+その他	絶版指示	is_orer_stop	1にするとチェック	0
+その他	販売ハードウェア状況	sale_hardware	PC/iPhone/iPad/(etc.)/(etc.)/...	1
+類書ISBN入力	ISBN	isbn	345-9868-985/365-6566-9861/(etc.)/...	1
 サムネール画像登録	サムネール標準(画像)	img_m	URL::ファイル名 (e.g., http://foo.com/hoge.jpg::hoge.jpg)	1
 サムネール画像登録	サムネール大(画像)	img_b	URL::ファイル名 (e.g., http://foo.com/hoge.jpg::hoge.jpg)	1
 サムネール画像登録	サムネール小(画像)	img_s	URL::ファイル名 (e.g., http://foo.com/hoge.jpg::hoge.jpg)	1

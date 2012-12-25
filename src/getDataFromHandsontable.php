@@ -55,7 +55,7 @@ $pw = $_POST['passwd'];
 //デバッグモードor本試験モードの選択
 //true : デバッグ．実際のデータは送信されず，画面に送られるべきxmlを出力
 //false : 実際に生成されたデータを送信する. 
-$is_debug = false;
+$is_debug = true;
 
 //xmlに記述する際に変換しなければいけない文字列
 $raw_char = array('&', '<', '>', '\'', '"');
@@ -144,6 +144,15 @@ foreach($_POST['data'] as $record) {
 				$record['isbn_array']['isbn_each_' . $i] = $isbn;
 				$i++;
 			} unset($isbn);
+			unset($record[$key]);
+		}
+		else if($key == 'isbn' || $key == 'sale_hardware') {
+			$val = explode("/", $val);
+			$i=1;
+			foreach($val as $value) {
+				$record[$key . '_array'][$key . '_each_' . $i] = $value;
+				$i++;
+			} unset($value);
 			unset($record[$key]);
 		}
 	} unset($key); unset($val);

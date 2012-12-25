@@ -4,10 +4,6 @@
 //	ターミナルAPIヘデータを流し込む為のウェブブラウザエクセルアプリ
 //****************************************************
 
-////////////////////////////////////////
-//セルの列項目に表示するデータは、../lib/honjpAPITagsというファイル
-////////////////////////////////////////
-
 //array_combineをPHP4に実装
 if( ! function_exists('array_combine')) {
 	function array_combine($arr1,$arr2) {
@@ -36,16 +32,15 @@ $limit = 50;
 //honjpAPITagsはtsv, ヘッダはclassification, display_name, xml_tag, sample, display
 $fp = @fopen('../lib/honjpAPITags', 'r');
 if ( ! $fp)	die('failed to get Colum Headers.');
-
-$multiple_item = array('author_array' => array(), 'label_array' => array(), 'printing_array' => array());
-
-//ヘッダの取得
 $header = fgetcsv($fp, 256, $delimiter);
 
+$multiple_item = array('author_array' => array(), 'label_array' => array(), 'printing_array' => array());
 while(($temp = fgetcsv($fp, 256, $delimiter)) !== false) {
 	$temp = array_combine($header, $temp);
 
-	if($temp['display'] == 0)	continue;
+	//displayが0で、必須項目でないなら
+	if($temp['display'] == 0 && ($temp['xml_tag'] != 'namespace' || $temp['xml_tag'] != 'title' || $temp['xml_tag'] != 'name_person' || $temp['xml_tag'] != 'name_role'))
+		continue;
 
 	$column[] = $temp['display_name'];
 	$example[] = $temp['sample'];
@@ -117,12 +112,12 @@ $count = count($column);
 foreach($column as $val) {
 	$column_header .= "\"" . $val . "\", ";
 } unset($val);
-$column_header = substr($column_header, 0, -2);	//最後のカンマを除去
+$column_header = substr($column_header, 0, -2);	//最後の「カンマ＋スペース」を除去
 
 foreach($example as $val) {
 	$example_header .= "\"" . $val . "\", ";
 } unset($val);
-$example_header = substr($example_header, 0, -2);	//最後のカンマを除去
+$example_header = substr($example_header, 0, -2);	//最後の「カンマ＋スペース」を除去
 
 foreach($multiple_item as $key => $section) {
 	$display_temp = "";
@@ -132,8 +127,8 @@ foreach($multiple_item as $key => $section) {
 			($section_name === "display_name") ? $display_temp .= "\"" . $val . "\", " : $sample_temp .= "\"" . $val . "\", ";
 		} unset($val);
 
-		$display_temp = substr($display_temp, 0, -2);	//最後のカンマを除去
-		$sample_temp = substr($sample_temp, 0, -2);	//最後のカンマを除去
+		$display_temp = substr($display_temp, 0, -2);	//最後の「カンマ＋スペース」を除去
+		$sample_temp = substr($sample_temp, 0, -2);	//最後の「カンマ＋スペース」を除去
 
 		($section_name === "display_name") ? $multiple_item[$key]['display_name'] = $display_temp : $multiple_item[$key]['sample'] = $sample_temp;
 	} unset($section_name);	unset($item);
