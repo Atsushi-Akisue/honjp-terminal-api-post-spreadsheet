@@ -1,15 +1,15 @@
-#hon.jp ターミナルAPI サンプルアプリ
+#「hon.jp ターミナルAPI」一括データ登録Webアプリ（サンプル）
 
 ##概要
-jQuery&HTMLで動作する<a href="https://github.com/Atsushi-Akisue/jquery-handsontable" target="_blank">handsontable</a>のアプリを用いて書誌情報をエクセル風に入力させ、そのデータをAjaxでPOSTし、POSTした先のスクリプトでXMLフォーマットにデータを整形して、hon.jp ターミナルAPIへPOSTする <br>
+jQuery & HTMLで動作する[handsontable](http://handsontable.com/)のアプリを用いて書誌情報をExcel風に入力させ、そのデータをAjaxでPOSTし、POSTした先のスクリプトでXMLフォーマットにデータを整形して、hon.jp ターミナルAPIへPOSTします。
+<br>
+※「hon.jpターミナル」アカウントが必要です。 詳細については[こちら](http://hon.jp/doc/honjpterminal.html)をお読みのうえ、(mailto:info@hon.jp)までメールでアカウント要請ください
 
-(※「hon.jpターミナル」アカウントが必要です。 申請は<a href="http://hon.jp/doc/honjpterminal.html" target="_blank">こちら</a>をお読みになった上、<a href="mailto:info@hon.jp">info@hon.jp</a>までメールしてください)
-
-##利用ソース
-PHP 4.4.9<br>
-PEAR - HTTP/Request.php<br>
-jQuery<br>
-handsontable (jQueryベース)<br>
+##ソース見本を使う前にインストールしてください。
++ PHP4 (サンプルでは4.4.9を使いました）
++ [PEAR - HTTP/Request.php](http://pear.php.net/)
++ [jQuery](http://jquery.com/)
++ [handsontable](http://handsontable.com/)
 
 ##使い方
 (./src/honjp_terminal_api_support.php)をブラウザから読み込むと、実際にデータを入力するためのhandsontable(エクセル風シート)が表示されます。<br>
@@ -24,4 +24,4 @@ handsontableに出力する列の各項目は、./lib/honjpAPITagsというtsv�
 1が入力されている項目のみがhandsontableに出力されますが、必須項目(namespace, title)はこの項の値に関わらず表示されます。
 
 ##ターミナルAPIの仕様
-<a href="http://hon.jp/doc/about_terminal_api.html">こちら</a>を参照してください。
+[こちら](http://hon.jp/doc/about_terminal_api.html)を参照してください。
