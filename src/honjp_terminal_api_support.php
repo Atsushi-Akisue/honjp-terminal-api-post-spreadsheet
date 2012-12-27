@@ -22,10 +22,11 @@ $delimiter = chr(9);
 //改行
 $newline = array(chr(10), chr(13));
 
-//Ajax送信時の改行
+//Ajax送信時の改行(改行があると送信できないため。
+//getDataFromHandsontable.phpにも同じ変数があるので、変更する場合はそちらも同時に変更すること
 $encodedNewLine = "_-_-";
 
-//列の上限
+//行の上限
 $limit = 50;
 ////config///////////////////////////////////
 
@@ -38,8 +39,8 @@ $multiple_item = array('author_array' => array(), 'label_array' => array(), 'pri
 while(($temp = fgetcsv($fp, 256, $delimiter)) !== false) {
 	$temp = array_combine($header, $temp);
 
-	//displayが0で、必須項目でないなら
-	if($temp['display'] == 0 && ($temp['xml_tag'] != 'namespace' || $temp['xml_tag'] != 'title' || $temp['xml_tag'] != 'name_person' || $temp['xml_tag'] != 'name_role'))
+	//displayが0で、かつ必須項目でないなら
+	if($temp['display'] == 0 && ($temp['xml_tag'] != 'namespace' || $temp['xml_tag'] != 'title'))
 		continue;
 
 	$column[] = $temp['display_name'];
@@ -64,15 +65,18 @@ while(($temp = fgetcsv($fp, 256, $delimiter)) !== false) {
 }
 fclose($fp);
 
+//[著者／レーベル／掲載物]の追加ボタンのアクティブ／ノンアクティブを決める
+//表示する項目がなければ追加はしないようにする
 $ability_of_author = empty($multiple_item['author_array']) ? "disabled" : "";
 $ability_of_label = empty($multiple_item['label_array']) ? "disabled" : "";
 $ability_of_printing = empty($multiple_item['printing_array']) ? "disabled" : "";
 
+//[著者／レーベル／掲載物]に関係するそれぞれの項目数を取得
 $count_author_array = count($multiple_item['author_array']['display_name']);
 $count_label_array = count($multiple_item['label_array']['display_name']);
 $count_printing_array = count($multiple_item['printing_array']['display_name']);
 
-//列の番号を保持する
+//列の番号を保持するための変数群（handsontableの各列に色づけしたり、列を追加したりするときに必要)
 $num_of_namespace = -1;
 $num_of_title = -1;
 $num_of_author = -1;
@@ -270,7 +274,7 @@ foreach($multiple_item as $key => $section) {
 
 														$("#exampleGrid").handsontable('updateSettings', {rowHeaders: newRowHeader});
 
-														//バグ修正
+														//バグ修正(表示崩れ)
 														for(var i=0; i < newRowHeader.length; i++)
 															$("table:eq(1) > tbody > tr:eq(" + i + ")").css("height", $("table:eq(0) > tbody > tr:eq(" + i + ")").height() + "px");
 														}, 20);

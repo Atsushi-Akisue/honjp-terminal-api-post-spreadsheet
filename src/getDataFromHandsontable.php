@@ -31,22 +31,21 @@ if( ! function_exists('array_combine')) {
 if( ! isset($_POST['data']) || empty($_POST['user']) || empty($_POST['passwd']))
 	die("{\"result\": \"ng\"}");
 
-require_once "HTTP/Request.php";
-require_once "./xml.php";
-
-////↓↓↓システム側の規定項目↓↓↓///////////////////////////////////////////////////////
-//デリミタ
+////config///////////////////////////////////////////////////////
+//デリミタ(タブ)
 $delimiter = chr(9);
 
 //改行
 $newline = array(chr(10), chr(13));
 $NL = chr(10);
 
-//Ajax送信時の改行
+//Ajax送信時の改行(改行があると送信できないため。)
+//honjp_terminal_api_support.phpにも同じ変数があるので、変更する場合はそちらも同時に変更すること
 $encodedNewLine = "_-_-";
 
 //APIアクセスサーバ
 $access_server = "https://hon.jp/rest/terminal/1.0/";
+////config///////////////////////////////////////////////////////
 
 //アカウントとパスワード
 $account = $_POST['user'];
@@ -68,7 +67,6 @@ $parent_child = array ( 'label_array' => array('name_label', 'kana_label'),
 
 //シリーズはユニークなタグだが、構造は入れ子．
 $series_array = array('name_series', 'kana_series', 'srs_pbl_catch', 'srs_pbl_cmnt_st', 'srs_pbl_cmnt_lg', 'srs_pbl_admn');
-//↑↑↑システム側の規定項目↑↑↑//////////////////////////////////////////////////////////
 
 //↓↓↓事前準備開始↓↓↓////////////////////////////////////////////////////////////////
 $fp = @fopen('../lib/honjpAPITags', 'r');
@@ -88,7 +86,7 @@ fclose($fp);
 $posted_header = $_POST['header'];
 $header = array();
 foreach($posted_header as $val) {
-	$val = explode("_", $val);
+	$val = explode("_", $val);	//複数項目存在するもの(honjpAPITagsのclassificationが著者、レーベル、掲載誌の項目群)
 	if(count($val) == 1) {
 		$in_array = false;
 		foreach($parent_child as $array) {
@@ -112,15 +110,19 @@ $xml_insert = array();
 foreach($_POST['data'] as $record) {
 	$record = array_combine($header, $record);
 
+	if(empty($record) || ( ! isset($record['title'])))	continue;	//項目がひとつもないもしくはタイトルがないものは登録できないのでパス
+
 	foreach($record as $key => $val) {
 
+		//項目になにも登録されていなければ、その項目はinsertもupdateもしない
 		if(empty($val)) {
 			unset($record[$key]);
 			continue;
 		}
 
-		$val = str_replace($raw_char, $xml_char, $val);
+		$val = str_replace($raw_char, $xml_char, $val);	//不要物の排除
 
+		//最後が『_[数字]』で終わっているものは複数項目
 		if(preg_match("/__[0-9]{1,3}/", $key, $count)) {
 			$count = str_replace("__", "", $count[0]);
 			$temp = ereg_replace('__[0-9]{1,3}', '', $key);
@@ -157,14 +159,15 @@ foreach($_POST['data'] as $record) {
 		}
 	} unset($key); unset($val);
 
-	if(empty($record) || ( ! isset($record['title'])))	continue;
-
+	//xmlのデータを作成
 	$xml_temp = "<superupdate key_namespace=\"" . $record['namespace'] . "\">";
 	unset($record['namespace']);
 
 	foreach($record as $key => $val) {
 		if( ! is_array($val)) {
 			$val = str_replace($encodedNewLine, $NL, $val);
+
+			//imgのタグだけは属性(登録するファイル名)があるのでここで処理する
 			if($key == 'img_m' || $key == 'img_b' || $key == 'img_s') {
 				$temp = explode("::", $val);
 				if(count($temp) == 2) {
@@ -183,16 +186,20 @@ foreach($_POST['data'] as $record) {
 
 	$xml_temp .= "</superupdate>";
 
-	$xml_insert[] = $xml_temp;
+	$xml_insert[] = $xml_temp;	//一件ずつしか登録できないので、とりあえずxmlの文字列を保持
 } unset($record);
 //↑↑↑事前準備ここまで↑↑↑////////////////////////////////////////////////////////////////
 
+//デバッグの場合はここで先頭行のxmlを出力して終了
 if($is_debug) {
 	echo "{\"result\": \"" . mb_convert_encoding(str_replace(array(chr(9), chr(10), chr(13), "\""), array("", "", "", "\\\""), $xml_insert[0]), "UTF-8", "EUC-JP") . "\"}";
 	exit(1);
 }
 
 //↓↓↓送信開始↓↓↓///////////////////////////////////////////////////////////////////////
+require_once "HTTP/Request.php";
+require_once "./xml.php";
+
 //sign-in(session idを取得)
 $data = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
 $data .= "<honjp_xml_http_api>";
@@ -277,7 +284,7 @@ if ( ! PEAR::isError($req->sendRequest())) {
 			$responseText .= " column.";
 		}
 
-		echo "{\"result\": \"" . $responseText . "\"}";
+		echo "{\"result\": \"" . $responseText . "\"}";	//実行結果を出力して終了
 		exit(1);
 	}
 }
