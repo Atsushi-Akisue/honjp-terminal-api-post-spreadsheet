@@ -3,7 +3,7 @@
 ##概要
 jQuery&HTMLで動作する<a href="https://github.com/Atsushi-Akisue/jquery-handsontable" target="_blank">handsontable</a>のアプリを用いて書誌情報をエクセル風に入力させ、そのデータをAjaxでPOSTし、POSTした先のスクリプトでXMLフォーマットにデータを整形して、hon.jp ターミナルAPIへPOSTする <br>
 
-(※hon.jpアカウントが必要です。 申請は<a href="http://hon.jp/doc/honjpterminal.html" target="_blank">こちら</a>をお読みになった上、<a href="mailto:info@hon.jp">info@hon.jp</a>までメールしてください)
+(※「hon.jpターミナル」アカウントが必要です。 申請は<a href="http://hon.jp/doc/honjpterminal.html" target="_blank">こちら</a>をお読みになった上、<a href="mailto:info@hon.jp">info@hon.jp</a>までメールしてください)
 
 ##利用ソース
 PHP 4.4.9<br>
