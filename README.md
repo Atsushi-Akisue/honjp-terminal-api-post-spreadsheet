@@ -1,8 +1,11 @@
 #「hon.jp ターミナルAPI」一括データ登録Webアプリ（サンプル）
 
 ##概要
-jQuery & HTMLで動作する[handsontable](http://handsontable.com/)のアプリを用いて書誌情報をExcel風に入力させ、そのデータをAjaxでPOSTし、POSTした先のスクリプトでXMLフォーマットにデータを整形して、hon.jp ターミナルAPIへPOSTします。
+jQuery & HTMLを使った、「hon.jpターミナルAPI」のサンプルPHPアプリです。[handsontable](http://handsontable.com/)を用いて電子書籍の書誌情報をExcel風に入力し、そのデータを一括でAPI側へHTTP POSTします。
 <br>
+<br>
+![hon.jpターミナルAPI 一括データ登録アプリ](http://hon.jp/doc/terminal_sampleapp.jpg)
+
 ※「hon.jpターミナル」アカウントが必要です。 詳細については[こちら](http://hon.jp/doc/honjpterminal.html)をお読みのうえ、(mailto:info@hon.jp)までメールでアカウント要請ください
 
 ##ソース見本を使う前にインストールしてください。
