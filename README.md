@@ -1,4 +1,4 @@
-#「hon.jp ターミナルAPI」一括データ登録Webアプリ（サンプル）
+#「hon.jpターミナルAPI」一括データ登録Webアプリ（サンプル）
 
 ##概要
 jQuery & HTMLを使った、「hon.jpターミナルAPI」のサンプルPHPアプリです。[handsontable](http://handsontable.com/)を用いて電子書籍の書誌情報をExcel風に入力し、そのデータを一括でAPI側へHTTP POSTします。
